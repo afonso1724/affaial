@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Currículos | CSS Puro</title>
+    <style>
+        /* 1. RESET E CONFIGURAÇÕES GERAIS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            color: white;
+        }
+
+        /* 2. FUNDO COM IMAGEM */
+        .bg-container {
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                              url('https://img.freepik.com/vetores-gratis/plano-de-fundo-da-area-de-trabalho-moderno-vetor-de-desenho-geometrico-azul_53876-135923.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 3. HEADER E NAVEGAÇÃO */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* Estilo do Dropdown */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Ajuste no botão para acomodar a nova seta */
+.dropbtn {
+    background: transparent;
+    color: white;
+    padding: 8px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espaço entre texto e seta */
+    transition: all 0.3s ease;
+}
+
+/* Criando a seta com CSS Puro */
+.arrow {
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+}
+
+/* Efeito no botão e na seta ao passar o mouse */
+.dropdown:hover .dropbtn {
+    background: white;
+    color: black;
+}
+.dropdown:hover .arrow {
+    border-color: black;
+    transform: rotate(-135deg); /* A seta vira para cima */
+    margin-top: 4px;
+}
+
+/* DROPDOWN COM TRANSIÇÃO LEVE */
+.dropdown-content {
+    /* Em vez de display: none, usamos estes 3 para permitir animação */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px); 
+    
+    position: absolute;
+    right: 0;
+    
+    min-width: 130px; /* Tamanho reduzido */
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
+    z-index: 10;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* Transição suave */
+}
+
+.dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0); /* Ele "sobe" levemente ao aparecer */
+}
+
+.dropdown-content a {
+    color: #fff;
+    font-weight: 900;
+    padding: 10px 15px; /* Padding menor */
+    text-decoration: none;
+    display: block;
+    font-size: 13px;
+    transition: background 0.2s;
+    width: 100%; /* Garante que o link ocupe toda a largura do dropdown */
+}
+
+.dropdown-content a:hover {
+    
+    color: #007bff;
+}
+        .dropdown:hover .dropdown-content { display: block; }
+        .dropdown:hover .dropbtn { background: white; color: black; }
+
+        /* 4. CONTEÚDO CENTRAL (CARDS) */
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .cards-wrapper {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap; /* Permite quebrar linha no mobile */
+            justify-content: center;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            width: 320px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid #007bff;
+            margin-bottom: 15px;
+            object-fit: cover;
+        }
+
+        .btn-cv {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 25px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .btn-cv:hover { background-color: #0056b3; }
+
+        /* 5. RESPONSIVIDADE (MEDIA QUERIES) */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .cards-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card {
+                width: 90%; /* Ocupa quase a tela toda no celular */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-container">
+        <header>
+            <div class="logo">
+                <img src="https://st.depositphotos.com/54959856/53986/v/450/depositphotos_539863100-stock-illustration-monogram-logo-letter-modern-geometric.jpg" alt="Logo">
+            </div>
+            <div class="nav-links">
+                <div class="dropdown">
+                    <button class="dropbtn">Afonso Fernando ▼</button>
+                    <div class="dropdown-content">
+                        <a href="affernan.html">Ver Resumo</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">Aires Almeida ▼</button>
+                    <div class="dropdown-content">
+                        <a href="aialmeid.html">Ver Resumo</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="cards-wrapper">
+                <div class="card">
+                    <img src="https://media.licdn.com/dms/image/v2/D4D03AQHt76gVIJww2Q/profile-displayphoto-shrink_400_400/B4DZsezJ2vLYAg-/0/1765748286641?e=1773878400&v=beta&t=ZN9XlAYI9B7D7i-gt-mtpBdLvCoeZfeDugsdCwSTsqY" alt="Afonso" class="profile-img">
+                    <h2>Afonso Fernando</h2>
+                    <p>Desenvolvedor Web</p>
+                    <a href="affernan.html" class="btn-cv">Ver Resumo</a>
+                </div>
+
+                <div class="card">
+                    <img src="https://media.licdn.com/dms/image/v2/D4D03AQGTFndu4P8SaQ/profile-displayphoto-crop_800_800/B4DZyMKJJYHEAI-/0/1771878005103?e=1773878400&v=beta&t=0-jyzvgWvn2MYV3F_kF-7-284eNj727BogtF3yxPVAg" alt="Aires" class="profile-img">
+                    <h2>Aires Almeida</h2>
+                    <p>Desenvolvedor Full Stack</p>
+                    <a href="aialmeid.html" class="btn-cv">Ver Resumo</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>
